@@ -18,9 +18,6 @@ public class Supply {
         this.updatedAt = updatedAt;
     }
 
-    public Supply() {
-    }
-
     public Long getId() {
         return id;
     }

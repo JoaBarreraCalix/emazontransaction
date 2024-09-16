@@ -19,4 +19,6 @@ public class BeanConfiguration {
     public ISupplyPersistencePort supplyPersistencePort(SupplyJpaAdapter supplyJpaAdapter) {
         return supplyJpaAdapter;
     }
+
+
 }

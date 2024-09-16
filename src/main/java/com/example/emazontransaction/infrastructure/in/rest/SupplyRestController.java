@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequestMapping("/supply")
 @RequiredArgsConstructor
@@ -21,19 +22,18 @@ import org.springframework.web.bind.annotation.*;
 public class SupplyRestController {
 
     private final SupplyHandler supplyHandler;
-    private final StockFeignClient stockFeignClient;
+    private final StockFeignClient stockFeignClient; // Asegúrate de que se inyecte correctamente.
 
     @Operation(summary = "Add supply to an article")
     @ApiResponse(responseCode = "201", description = "Supply added successfully", content = @Content)
     @PostMapping("/add")
     public ResponseEntity<SupplyResponse> addSupply(@Valid @RequestBody SupplyRequest supplyRequest) {
-        // Verificamos si el artículo existe
+        // Verifica si el artículo existe utilizando Feign Client
         boolean articleExists = stockFeignClient.checkIfArticleExists(supplyRequest.getArticleId());
         if (!articleExists) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        // Llamamos al handler para procesar el suministro
         SupplyResponse response = supplyHandler.addSupply(supplyRequest);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

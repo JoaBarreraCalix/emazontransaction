@@ -10,19 +10,48 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class SupplyRequest {
 
     @NotNull(message = Constants.ARTICLE_ID_NOTNULL)
     private Long articleId;
+
     @Min(value = Constants.MIN_SUPPLY_VALUE, message = Constants.MIN_SUPPLY_MESSAGE)
     private int quantity;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    // Getters y Setters manuales
 
+    public Long getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(Long articleId) {
+        this.articleId = articleId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

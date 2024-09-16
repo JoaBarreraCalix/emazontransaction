@@ -15,8 +15,8 @@ public class SupplyHandler {
     private final SupplyMapper supplyMapper;
 
     public SupplyResponse addSupply(SupplyRequest supplyRequest) {
-        var supply = supplyMapper.toSupply(supplyRequest);
-        supplyServicePort.addSupply(supply);
-        return supplyMapper.toSupplyResponse(supply);
+        var supply = supplyMapper.toSupply(supplyRequest);  // Mapea el request al modelo de dominio
+        supplyServicePort.addSupply(supply);  // Agrega el supply a la base de datos
+        return supplyMapper.toSupplyResponse(supply);  // Retorna la respuesta mapeada al DTO
     }
 }
